@@ -7,7 +7,12 @@ const koaBody = require('koa-body');
 const app = new Koa();
 
 app.use(cors());
-app.use(koaBody({json: true}));
+app.use(koaBody({
+    text: true,
+    urlencoded: true,
+    multipart: true,
+    json: true,
+  }));
 
 let posts = [
     {
@@ -21,7 +26,7 @@ let posts = [
         created: Date.now()  
     }
 ];
-let nextId = 1;
+let nextId = 3;
 
 const router = new Router();
 
@@ -32,14 +37,23 @@ router.get('/posts', async (ctx, next) => {
 router.post('/posts', async(ctx, next) => {
     const {id, content} = ctx.request.body;
 
-    if (id !== 0) {
-        posts = posts.map(o => o.id !== id ? o : {...o, content: content});
+    if (id) {
+        console.log(id, content)
+        posts = posts.map(o => Number(o.id) !== Number(id) ? o : {...o, content: content});
         ctx.response.status = 204;
         return;
     }
 
     posts.push({...ctx.request.body, id: nextId++, created: Date.now()});
     ctx.response.status = 204;
+    console.log(posts);
+});
+
+router.get('/posts/:id', async(ctx, next) => {
+    const postId = Number(ctx.params.id);
+    const post = posts.find(el => el.id === postId); 
+    ctx.response.body = post;
+    // ctx.response.status = 204;
 });
 
 router.delete('/posts/:id', async(ctx, next) => {

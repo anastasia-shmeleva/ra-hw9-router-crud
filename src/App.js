@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import HomePage from './components/HomePage';
 import NewPost from './components/NewPost';
 import PostView from './components/PostView';
+import PostEdit from './components/PostEdit';
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
             <Route path="/" element={<HomePage/>} />
             <Route path="/posts/new" element={<NewPost/>} />
             <Route path="/posts/:id" element={<PostView/>} />
+            <Route path="/posts/:id/edit" element={<PostEdit/>} />
           </Routes>
         </div>
       </div>

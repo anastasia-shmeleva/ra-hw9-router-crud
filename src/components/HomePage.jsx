@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import CreatePost from './CreatePost';
+import Header from './Header';
 import Post from './Post';
 
 export default function HomePage() {
@@ -17,7 +17,7 @@ export default function HomePage() {
 
   return (
     <div className='container'>
-      <CreatePost></CreatePost>
+      <Header route={'posts/new'}></Header>
       {posts.length === 0 && <div className='text'>Nothing here yet</div>}
       {posts.length > 0 && <div className='posts'>{posts.map(post => <Post key={post.id}>{post}</Post>)}</div>}
     </div>  

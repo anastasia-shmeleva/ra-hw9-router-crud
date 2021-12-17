@@ -1,4 +1,3 @@
-import shortid from 'shortid';
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
@@ -7,13 +6,14 @@ export default function NewPost() {
 
   const toPost = (form) => {
     const formData = new FormData();
-    formData.append('id', shortid.generate());
     formData.append('content', form.content);
 
     fetch('http://localhost:7777/posts', {
       method: 'POST',
       body: new URLSearchParams(formData)
     });
+
+    document.location = "/";
   }
 
   const onChangeHandler = ({ target: { value } }) => {

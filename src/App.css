@@ -30,13 +30,13 @@ a {
   padding: 20px;
 }
 
-.create-post-wrapper {
+.header-wrapper {
   text-align: end;
   padding: 20px;
   border-bottom: 1px solid rgb(161, 159, 159);
 }
 
-.create-post {
+.header {
   padding: 10px;
   padding: 10px;
   border: 1px solid gray;
@@ -46,7 +46,7 @@ a {
   /* width: 100px; */
 }
 
-.create-post:hover {
+.header:hover {
   color: gray;
   border-color: rgb(180, 177, 177);
 }
